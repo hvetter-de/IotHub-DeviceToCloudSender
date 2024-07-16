@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DeviceToCloudSender.MainPage"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25">
+            <Image
+                Source="dotnet_bot.png"
+                HeightRequest="155"
+                Aspect="AspectFit"
+                SemanticProperties.Description="dot net bot in a race car number eight" />
+
+            <HorizontalStackLayout>
+                <Entry x:Name="SelectedFolder" Placeholder="Select a folder." />
+                <Button
+x:Name="FolderSelector"
+Text="Select Folder" 
+SemanticProperties.Hint="Select a folder where your files are."
+Clicked="OnSelectFolderClicked"
+HorizontalOptions="Fill" />
+            </HorizontalStackLayout>
+
+
+
+            <ListView x:Name="FileList" ItemsSource="{Binding FilesInFolder}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding}" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <Entry x:Name="ConnectionString" Placeholder="IotHub Device ConnectionString"/>
+
+            <HorizontalStackLayout Margin="10">
+                <Label Text="Repeat" Margin="20,0,0,0"/>
+                <CheckBox  x:Name="CheckBoxRepeat" IsChecked="True" />
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout>
+                <Label Margin="20,0,0,0" Text="Ask before sending each msg"/>
+
+                <CheckBox x:Name="CheckBoxAskForEveryMsg" IsChecked="False"/>
+            </HorizontalStackLayout>
+
+
+            <HorizontalStackLayout>
+                <Button
+            x:Name="BtnSendMessages"
+            Text="Click me" 
+            Clicked="OnBtnSendMessagesClicked"
+            HorizontalOptions="Fill" />
+
+                <Button
+x:Name="BtnStop"
+Text="Stop" 
+Clicked="OnBtnStopClicked"
+HorizontalOptions="Fill" />
+
+            </HorizontalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
